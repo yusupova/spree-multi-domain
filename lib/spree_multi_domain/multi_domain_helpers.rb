@@ -12,6 +12,10 @@ module SpreeMultiDomain
     def current_tracker
       @current_tracker ||= Spree::Tracker.current(request.env['SERVER_NAME'])
     end
+    
+    def current_store
+      Spree::Store.current
+    end
 
     def get_taxonomies
       @taxonomies ||= current_store.present? ? Spree::Taxonomy.where(["store_id = ?", current_store.id]) : Spree::Taxonomy
